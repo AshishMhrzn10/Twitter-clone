@@ -7,6 +7,17 @@
         <h1>Welcome to Tweet me</h1>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-4 mx-auto col-10">
+        <form class="form" action="create-tweet/" method="post">
+        {% csrf_token %}
+            <input type="hidden" value="/" name="next">   
+            <textarea class="form-control" name="content" placeholder="Compose a tweet"></textarea>  
+            <button type="submit" class="btn btn-primary">Tweet</button>
+        </form>
+    </div>
+</div>
     
     <div class="row" id="tweets">
         Loading...

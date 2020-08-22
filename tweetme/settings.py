@@ -25,7 +25,7 @@ SECRET_KEY = '70v7x%9qv^0jb=(lu5n)6x(qax4+%9)@7ry$d&d=(bza59si*4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'tweets',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
