@@ -79,6 +79,14 @@ function handleTweetCreateFormDidSumbit(event) {
                 alert("An error occured. Please try again")
             }
         }
+        else if(xhr.status === 401){
+            alert("You must login!")
+            window.location.reload = "/login/"
+        }
+        else if(xhr.status === 403){
+            alert("You must login!")
+            window.location.reload = "/login/"
+        }
         else if(xhr.status === 500){
             alert("There was a server error. Please try again.")
         }
@@ -104,7 +112,7 @@ function loadTweets(tweetsElement) {
     xhr.open(method, url)
     xhr.onload = function() {
         const serverResponse = xhr.response
-        const listedItems = serverResponse.response // array
+        const listedItems = serverResponse // array
         var finalTweetStr = ""
         var i;
         for (i=0;i<listedItems.length; i++) {
