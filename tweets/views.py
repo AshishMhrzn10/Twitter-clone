@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.utils.http import is_safe_url
 from .models import Tweet
 from .forms import TweetForm
-from .serializers import TweetSerializer, TweetActionSerializer
+from .serializers import TweetSerializer, TweetActionSerializer, TweetCreateSerializer
 import random
 
 from rest_framework.response import Response
@@ -24,7 +24,7 @@ def home_view(request, *args, **kwargs):
 # @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def tweet_create_view(request,  *args, **kwargs):
-    serializer = TweetSerializer(data=request.POST)
+    serializer = TweetCreateSerializer(data=request.POST)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
@@ -63,6 +63,7 @@ def tweet_action_view(request, *args, **kwargs):
         data = serializer.validated_data
         tweet_id = data.get("id")
         action = data.get("action")
+        content = data.get("content")
 
         qs = Tweet.objects.filter(id=tweet_id)
         if not qs.exists():
@@ -75,8 +76,10 @@ def tweet_action_view(request, *args, **kwargs):
         elif action == "unlike":
             obj.likes.remove(request.user)
         elif action == "retweet":
-            pass
-
+            new_tweet = Tweet.objects.create(
+                user=request.user, parent=obj, content=content)
+            serializer = TweetSerializer(new_tweet)
+            return Response(serializer.data, status=200)
     return Response({}, status=200)
 
 
