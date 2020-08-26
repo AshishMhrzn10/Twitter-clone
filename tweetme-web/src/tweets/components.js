@@ -39,6 +39,7 @@ export function TweetsComponent(props) {
 export function TweetsList(props) {
   const [tweetsInit, setTweetsInit] = useState([]);
   const [tweets, setTweets] = useState([]);
+  const [tweetsDidSet, setTweetsDidSet] = useState(false);
   useEffect(() => {
     const final = [...props.newTweets].concat(tweetsInit);
     if (final.length !== tweets.length) {
@@ -46,15 +47,18 @@ export function TweetsList(props) {
     }
   }, [props.newTweets, tweets, tweetsInit]);
   useEffect(() => {
-    const mycallback = (response, status) => {
-      if (status === 200) {
-        setTweetsInit(response);
-      } else {
-        alert("There was an error");
-      }
-    };
-    loadTweets(mycallback);
-  }, []);
+    if (tweetsDidSet === false) {
+      const mycallback = (response, status) => {
+        if (status === 200) {
+          setTweetsInit(response);
+          setTweetsDidSet(true);
+        } else {
+          alert("There was an error");
+        }
+      };
+      loadTweets(mycallback);
+    }
+  }, [tweetsInit, tweetsDidSet, setTweetsDidSet]);
   return tweets.map((item, index) => {
     return (
       <Tweet
