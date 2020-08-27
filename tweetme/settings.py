@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'tweets',
     'accounts',
+    'profiles',
     'crispy_forms',
     'rest_framework',
     'corsheaders',
