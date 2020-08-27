@@ -1,30 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     {% include 'react/css.html' %}
     <style>
-        .bg-tweetme {
-            background-color: #8e1f1f!important;
-        }
+      .bg-tweetme {
+        background-color: #8e1f1f !important;
+      }
     </style>
     <title>TweetMe - {% block title %}{% endblock title %}</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     {% include 'components/navbar.html' %}
-    <div class="container">
-        {% block content %}{% endblock content %}
-    </div>
+    <div class="container">{% block content %}{% endblock content %}</div>
 
     <!-- Optional JavaScript -->
-    {% block js %}{% endblock js %}
-    {% include 'react/base_embed.html' %}
-    {% include 'react/js.html' %}
+    {% block js %}{% endblock js %} {% include 'react/base_embed.html' %} {%
+    include 'react/js.html' %}
   </body>
 </html>
