@@ -37,4 +37,5 @@ urlpatterns = [
     path('<int:tweet_id>/', tweets_detail_view),
     path('profile/', include('profiles.urls')),
     path('api/tweets/', include('tweets.api.urls')),
+    path('api/profile/', include('profiles.api.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
