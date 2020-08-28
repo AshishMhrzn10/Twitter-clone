@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.conf import settings
-from django.http import HttpResponse, Http404, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from ..models import Profile
+from ..serializers import PublicProfileSerializer
 from django.contrib.auth.models import User
 
 from rest_framework.response import Response
@@ -19,6 +20,14 @@ ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 #     current_user = request.user
 #     to_follow_user = 
 #     return Response({}, status=200)
+@api_view(['GET'])
+def profile_detail_api_view(request, username, *args, **kwargs):
+    qs = Profile.objects.filter(user__username=username)
+    if not qs.exists():
+        return Response({"detail":"User not found"}, status=404)
+    profile_obj = qs.first()
+    data = PublicProfileSerializer(instance=profile_obj, context={"request":request})
+    return Response(data.data, status=200)
 
 
 @api_view(['GET','POST'])
@@ -41,8 +50,8 @@ def user_follow_view(request, username, *args, **kwargs):
         profile.followers.remove(me)
     else:
         pass
-    current_followers_qs = profile.followers.all()
-    return Response({"count":current_followers_qs.count()}, status=200)
+    data = PublicProfileSerializer(instance=profile, context={"request":request})
+    return Response(data.data, status=200)
 
 
 

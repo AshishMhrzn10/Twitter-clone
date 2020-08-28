@@ -8,6 +8,7 @@ export function ParentTweet(props) {
   <Tweet isRetweet retweeter={props.retweeter} hideActions className={""} tweet={tweet.parent} />
   : null;
 }
+
 export function Tweet(props) {
   const { tweet, didRetweet, hideActions, isRetweet, retweeter } = props;
   const [actionTweet, setActionTweet] = useState(
