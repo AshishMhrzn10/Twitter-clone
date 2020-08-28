@@ -1,8 +1,7 @@
 # Project setup
 
 ### Install dependencies
-pip install -r requirements.txt<br/>
-npm install
+pip install -r requirements.txt
 
 ### Serve API on localhost:8000
 python tweetme/manage.py runserver
