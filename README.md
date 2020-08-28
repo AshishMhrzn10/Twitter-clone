@@ -1,3 +1,16 @@
+# Project setup
+
+### Install dependencies
+pip install -r requirements.txt<br/>
+npm install
+
+### Serve API on localhost:8000
+python tweetme/manage.py runserver
+
+<br/>
+<br/>
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
